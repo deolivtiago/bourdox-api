@@ -7,6 +7,8 @@ defmodule BourdoxWeb.Router do
 
   scope "/api", BourdoxWeb do
     pipe_through :api
+
+    resources "/users", UserController, except: [:new, :edit]
   end
 
   # Enable Swoosh mailbox preview in development
