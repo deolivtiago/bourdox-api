@@ -3,6 +3,14 @@ defmodule BourdoxWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug OpenApiSpex.Plug.PutApiSpec, module: BourdoxWeb.ApiSpec
+  end
+
+  scope "/" do
+    pipe_through :api
+
+    get "/swaggerui", OpenApiSpex.Plug.SwaggerUI, path: "/openapi"
+    get "/openapi", OpenApiSpex.Plug.RenderSpec, []
   end
 
   scope "/api", BourdoxWeb do
