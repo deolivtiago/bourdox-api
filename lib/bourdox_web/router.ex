@@ -5,8 +5,23 @@ defmodule BourdoxWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth do
+    plug BourdoxWeb.Plugs.AuthenticationPlug
+  end
+
   scope "/api", BourdoxWeb do
     pipe_through :api
+
+    post "/signup", AuthController, :signup
+    post "/signin", AuthController, :signin
+    get "/refresh", AuthController, :refresh
+    get "/confirm-account", AuthController, :confirm_account
+  end
+
+  scope "/api", BourdoxWeb do
+    pipe_through [:api, :auth]
+
+    get "/me", UserController, :me
 
     resources "/users", UserController, except: [:new, :edit]
   end

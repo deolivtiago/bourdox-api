@@ -5,6 +5,10 @@ defmodule BourdoxWeb.UserController do
   alias BourdoxCore.Accounts.Users
 
   action_fallback BourdoxWeb.FallbackController
+  @doc false
+  def me(%{assigns: %{current_user: user}} = conn, _params) do
+    render(conn, :show, user: user)
+  end
 
   @doc false
   def index(conn, _params) do

@@ -7,6 +7,7 @@ defmodule BourdoxCore.Accounts.Users.User do
   import Ecto.Changeset
 
   alias __MODULE__
+  alias BourdoxCore.Accounts.UserTokens.UserToken
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -16,12 +17,14 @@ defmodule BourdoxCore.Accounts.Users.User do
 
   schema "users" do
     field :first_name, :string
-    field :last_name, :string
+    field :last_name, :string, default: ""
     field :email, :string
     field :password, :string, redact: true
 
     field :role, Ecto.Enum, values: [:user, :admin], default: :user
     field :is_inactive, :boolean, default: true
+
+    has_many :user_tokens, UserToken
 
     timestamps(type: :utc_datetime)
   end

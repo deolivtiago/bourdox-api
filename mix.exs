@@ -57,6 +57,7 @@ defmodule BourdoxCore.MixProject do
       {:excoveralls, "~> 0.18", only: [:dev, :test], runtime: false},
       {:tzdata, "~> 1.1"},
       {:argon2_elixir, "~> 4.0"},
+      {:joken, "~> 2.6"},
       {:faker, "~> 0.17", only: [:dev, :test], runtime: false}
     ]
   end

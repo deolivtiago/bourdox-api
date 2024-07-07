@@ -35,6 +35,14 @@ config :bourdox, BourdoxCore.Mailer, adapter: Swoosh.Adapters.Local
 # Configures the database timezone
 config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
 
+# Configures Joken JWT secret key
+config :joken,
+  default_signer:
+    System.get_env(
+      "JWT_SECRET_KEY",
+      "hLw/NmmMD6LSsuIAsGXvEFQjSbiv+i42ImcQMgCMtqu5CFU5vd445yBzsdDV8geG"
+    )
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

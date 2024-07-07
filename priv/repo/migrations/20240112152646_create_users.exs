@@ -6,7 +6,7 @@ defmodule BourdoxCore.Repo.Migrations.CreateUsers do
       add :id, :binary_id, primary_key: true
 
       add :first_name, :string, null: false
-      add :last_name, :string, null: false
+      add :last_name, :string, default: ""
       add :email, :string, null: false
       add :password, :string, null: false
 
